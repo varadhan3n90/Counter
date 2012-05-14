@@ -26,7 +26,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Wind
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int PORT = 8100;
+	private static final int PORT = 8101;
 	private static final int OK = 0;
 	
 	
@@ -103,14 +103,13 @@ public class Server extends JFrame implements Serializable, ActionListener, Wind
 			JOptionPane.showMessageDialog(null, "Setting button pressed");
 		}
 		if(ae.getActionCommand().equals("Display Counter")){
-			JOptionPane.showConfirmDialog(null, "Display counter called. Writing object.");			
+			//JOptionPane.showConfirmDialog(null, "Display counter called. Writing object.");			
 			try {
 				ServerSocket s = new ServerSocket(PORT);
 				new Display();
 				this.setVisible(false);
 				myServer.acceptConnections(s);
-			} catch (IOException e) { e.printStackTrace();
-				}			
+			} catch (IOException e) { e.printStackTrace(); }			
 		}
 	}
 
