@@ -25,7 +25,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 
 	private void initialize() {
 		System.out.println("Creating display tables.");		
-		Font font = new Font("Times New Roman", Font.PLAIN, 40);		
+		Font font = new Font("Times New Roman", Font.BOLD, 40);		
 		displayTable = new JTable(data, columnNames);
 		displayTable.setFont(font);
 		displayTable.setRowHeight(100);
@@ -41,6 +41,13 @@ public class Display extends JFrame implements Serializable, Runnable {
 		this.contentDisplayed = contentDisplayed;
 	}
 	
+	public void cycleData(DisplayValues d){		
+		for(int i=1;i<data.length;i++){
+			data[i] = data[i-1];
+		}
+		data[0][0] = ""+d.counterNumber;
+		data[0][1] = ""+d.tokenNumber;
+	}
 	
 	public Display() {
 		super("Queue management system...");		
@@ -60,13 +67,27 @@ public class Display extends JFrame implements Serializable, Runnable {
 			
 		};
 		this.addWindowListener(listner);
-		Thread t = new Thread(this);
-		t.start();
-		
+		Thread t1 = new Thread(this);
+		t1.setName("DataDisplay");
+		t1.start();
+		Thread t2 = new Thread(this);
+		t2.setName("AdDisplay");
+		t2.start();
 	}
 	
 	@Override
-	public void run() {		
+	public void run() {
+		if(Thread.currentThread().getName().equals("DataDisplay")){
+			while(true){
+				if(Server.myServer!=null){
+					DisplayValues d = Server.myServer.getNextInQueue();
+					if(d!=null){
+						cycleData(d);
+					}
+				}
+			}
+		}
+		if(Thread.currentThread().getName().equals("AdDisplay"))
 		while(true){
 			if(isContentDisplayed()){
 				try {					

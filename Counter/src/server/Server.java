@@ -34,13 +34,17 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	
 	Button setting;
 	Button displayScreen;
-	Queue<DisplayValues> queue = new LinkedList<DisplayValues>();
+	Queue<DisplayValues> queue;
 	
-	public DisplayValues getNextInQueue(){
-		if(queue.isEmpty())
+	public synchronized DisplayValues getNextInQueue(){
+		if(queue.isEmpty()){
+			System.out.println("Queue is empty.");
 			return null;
-		else
+		}
+		else{
+			System.out.println("Queue is not empty.");
 			return queue.remove();
+		}
 	}
 	
 	public void initialize(){		
@@ -53,7 +57,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		this.add(setting);
 		this.add(displayScreen);
 		setting.addActionListener(this);
-		displayScreen.addActionListener(this);		
+		displayScreen.addActionListener(this);
+		queue = new LinkedList<DisplayValues>();
 	}
 	
 	public int getNextTokenNumber(){
@@ -70,13 +75,17 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 				Socket client = s.accept();
 				System.out.println("Client connected..");
 				DataInputStream in = new DataInputStream(client.getInputStream());
-				System.out.println("Counter: "+in.read());
+				int counterNumber = in.read();
+				System.out.println("Counter: "+counterNumber);
 				int nextToken = getNextTokenNumber();
 				System.out.println("Token number"+nextToken);
 				DataOutputStream out = new DataOutputStream(client.getOutputStream());
 				out.write(nextToken);
 				out.close();
 				client.close();
+				DisplayValues next = new DisplayValues(counterNumber,nextToken);
+				if(queue!=null)
+					queue.add(next);
 			}
 		}catch(Exception e) { e.printStackTrace(); }
 	}
