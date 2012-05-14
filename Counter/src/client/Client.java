@@ -48,6 +48,7 @@ public class Client extends JFrame implements ActionListener {
 			}
 		};
 		this.addWindowListener(listener);
+		this.setAlwaysOnTop(true);
 	}
 	
 	@Override

@@ -41,17 +41,21 @@ public class Display extends JFrame implements Serializable, Runnable {
 		this.contentDisplayed = contentDisplayed;
 	}
 	
-	public void cycleData(DisplayValues d){		
-		for(int i=1;i<data.length;i++){
-			data[i] = data[i-1];
+	public void cycleData(DisplayValues d){
+		System.out.println("Cycle data called.");
+		for(int i=data.length-1;i>=1;i--){
+			data[i][0] = data[i-1][0];
+			data[i][1] = data[i-1][1];
 		}
 		data[0][0] = ""+d.counterNumber;
 		data[0][1] = ""+d.tokenNumber;
+		contentDisplayed = true;
+		displayTable.updateUI();
 	}
 	
 	public Display() {
 		super("Queue management system...");		
-		this.setAlwaysOnTop(true);
+		//this.setAlwaysOnTop(true);
 		this.initialize();
 		this.setSize(getMaximumSize());
 		this.setVisible(true);
@@ -85,6 +89,11 @@ public class Display extends JFrame implements Serializable, Runnable {
 						cycleData(d);
 					}
 				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {					
+					e.printStackTrace();
+				}
 			}
 		}
 		if(Thread.currentThread().getName().equals("AdDisplay"))
@@ -100,7 +109,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 				System.out.println("Displaying ad..");
 				// TODO: Display ad.
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(10000);
 				} catch (InterruptedException e) {					
 					e.printStackTrace();
 				}

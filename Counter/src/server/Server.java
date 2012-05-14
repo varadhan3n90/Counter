@@ -1,6 +1,5 @@
 package server;
 
-import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +18,7 @@ import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import display.*;;
@@ -32,17 +32,17 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	public static Server myServer;
 	private int tokenNumber = 0;
 	
-	Button setting;
-	Button displayScreen;
+	JButton setting;
+	JButton displayScreen;
 	Queue<DisplayValues> queue;
 	
 	public synchronized DisplayValues getNextInQueue(){
 		if(queue.isEmpty()){
-			System.out.println("Queue is empty.");
+			//System.out.println("Queue is empty.");
 			return null;
 		}
 		else{
-			System.out.println("Queue is not empty.");
+			//System.out.println("Queue is not empty.");
 			return queue.remove();
 		}
 	}
@@ -52,8 +52,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		this.setTitle("Queue management system.");
 		GridLayout gl = new GridLayout(1,2);
 		this.setLayout(gl);
-		setting = new Button("Settings");
-		displayScreen = new Button("Display Counter");
+		setting = new JButton("Settings");
+		displayScreen = new JButton("Display Counter");
 		this.add(setting);
 		this.add(displayScreen);
 		setting.addActionListener(this);
