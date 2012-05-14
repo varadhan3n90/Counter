@@ -41,6 +41,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 		this.contentDisplayed = contentDisplayed;
 	}
 	
+	
 	public Display() {
 		super("Queue management system...");		
 		this.setAlwaysOnTop(true);
@@ -61,15 +62,16 @@ public class Display extends JFrame implements Serializable, Runnable {
 		this.addWindowListener(listner);
 		Thread t = new Thread(this);
 		t.start();
+		
 	}
 	
 	@Override
 	public void run() {		
 		while(true){
 			if(isContentDisplayed()){
-				try {
-					Thread.sleep(5000);
+				try {					
 					setContentDisplayed(false);
+					Thread.sleep(5000);
 				} catch (InterruptedException e) {					
 					e.printStackTrace();
 				}
