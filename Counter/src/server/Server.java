@@ -4,6 +4,9 @@ import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,27 +18,26 @@ import java.net.Socket;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import display.*;;
 
 
 public class Server extends JFrame implements Serializable, ActionListener, Runnable{	
 	
 	private static final long serialVersionUID = 12345L;
-	private static final int PORT = 8101;
+	private static final int PORT = 8100;
 	private static final int OK = 0;
 	
-	static Server myServer;	
+	public static Server myServer;
 	private int tokenNumber = 0;
 	
 	Button setting;
 	Button displayScreen;
-		
-	Display display;
 	
 	public void initialize(){		
 		System.out.println("Initialize called.");
 		this.setTitle("Queue management system.");
 		GridLayout gl = new GridLayout(1,2);
-		this.setLayout(gl);		
+		this.setLayout(gl);
 		setting = new Button("Settings");
 		displayScreen = new Button("Display Counter");
 		this.add(setting);
@@ -102,6 +104,18 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		}catch(Exception e){			
 			newServer();						
 		}
+		WindowListener listner = new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent we){
+				System.out.println("Main window closing");
+				new SaveState().saveState();
+				System.exit(0);
+			}			
+		};
+		myServer.addWindowListener(listner);
+		myServer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		Thread t = new Thread(new SaveState());
+		t.start();
 	}
 	
 	@Override
@@ -115,7 +129,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent ae) {		
+	public void actionPerformed(ActionEvent ae) {
 		if(ae.getActionCommand().equals("Settings")){
 			JOptionPane.showMessageDialog(null, "Setting button pressed");
 		}
@@ -123,11 +137,9 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			System.out.println("Display counter button pressed");				
 			Thread t = new Thread(this);			
 			t.start();
-			this.setVisible(false);
-			if(display==null)
-				display = new Display();
-			else
-				display.setVisible(true);
+			this.setVisible(false);			
+			Display	display = new Display();
+			display.setVisible(true);			
 		}
 	}
 	
