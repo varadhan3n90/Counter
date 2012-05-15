@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package client;
 
 import java.awt.event.ActionEvent;
@@ -13,22 +16,34 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
+/**
+ * The Class Client.
+ */
 public class Client extends JFrame implements ActionListener {
-	/**
-	 * 
-	 */
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -60997400387172441L;
+	
+	/** The my client. */
 	public static Client myClient;
+	
+	/** The counter number. */
 	private final int counterNumber;
+	
+	/** The PORT. */
 	private final int PORT = 8100;
 	
+	/** The next client. */
 	JButton nextClient;
+	
+	/**
+	 * Instantiates a new client.
+	 */
 	public Client(){		
 		nextClient = new JButton("Next");
 		this.add(nextClient);		
@@ -43,13 +58,14 @@ public class Client extends JFrame implements ActionListener {
 					FileOutputStream fos = new  FileOutputStream(new File("Client.obj"));
 					ObjectOutputStream out = new ObjectOutputStream(fos);
 					out.writeObject(Client.myClient);
-					System.exit(0);
+					//System.exit(0);
 				}catch(Exception ex){ ex.printStackTrace(); }
 			}
 		};
 		this.addWindowListener(listener);
 		this.setAlwaysOnTop(true);
 	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

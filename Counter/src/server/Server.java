@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package server;
 
 import java.awt.GridLayout;
@@ -17,36 +20,55 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import display.*;;
 
 
+/**
+ * The Class Server.
+ */
 public class Server extends JFrame implements Serializable, ActionListener, Runnable{	
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12345L;
+	
+	/** The Constant PORT. */
 	private static final int PORT = 8100;
 		
+	/** The my server. */
 	public static Server myServer;
+	
+	/** The token number. */
 	private int tokenNumber = 0;
 	
+	/** The setting. */
 	JButton setting;
+	
+	/** The display screen. */
 	JButton displayScreen;
+	
+	/** The queue. */
 	Queue<DisplayValues> queue;
 	
+	/**
+	 * Gets the next in queue.
+	 *
+	 * @return the next in queue
+	 */
 	public synchronized DisplayValues getNextInQueue(){
-		if(queue.isEmpty()){
-			//System.out.println("Queue is empty.");
+		if(queue.isEmpty()){			
 			return null;
 		}
-		else{
-			//System.out.println("Queue is not empty.");
+		else{			
 			return queue.remove();
 		}
 	}
 	
+	/**
+	 * Initialize.
+	 */
 	public void initialize(){		
 		System.out.println("Initialize called.");
 		this.setTitle("Queue management system.");
@@ -61,11 +83,19 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		queue = new LinkedList<DisplayValues>();
 	}
 	
+	/**
+	 * Gets the next token number.
+	 *
+	 * @return the next token number
+	 */
 	public int getNextTokenNumber(){
 		tokenNumber++;
 		return tokenNumber;
 	}
 		
+	/**
+	 * Accept connections.
+	 */
 	public void acceptConnections(){
 		try{			
 			System.out.println("Accept connections called.");
@@ -90,6 +120,9 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		}catch(Exception e) { e.printStackTrace(); }
 	}
 	
+	/**
+	 * New server.
+	 */
 	public void newServer(){
 		File f = new File("settings.obj");	
 		myServer = new Server();
@@ -106,6 +139,9 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		}
 	}
 	
+	/**
+	 * Creates the server.
+	 */
 	public void CreateServer(){
 		File f = new File("settings.obj");
 		try{
@@ -140,15 +176,13 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		t.start();
 	}
 	
+	
 	@Override
 	public void run(){
 		System.out.println("Run method called..");
 		acceptConnections();
 	}
 	
-	public static void main(String[] args){
-		new Server().CreateServer();
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {

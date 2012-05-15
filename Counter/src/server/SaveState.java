@@ -1,10 +1,21 @@
+/*
+ * 
+ */
 package server;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SaveState.
+ */
 public class SaveState implements Runnable{	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		System.out.println("Save state called...");
@@ -18,6 +29,9 @@ public class SaveState implements Runnable{
 		}
 	}
 
+	/**
+	 * Save state.
+	 */
 	public void saveState() {
 		try{
 			FileOutputStream fos = new  FileOutputStream(new File("Settings.obj"));

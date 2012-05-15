@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package client;
 
 import java.io.File;
@@ -6,7 +9,17 @@ import java.io.ObjectInputStream;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ClientMain.
+ */
 public class ClientMain {
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args){
 			File f = new File("Client.obj");
 			try{
