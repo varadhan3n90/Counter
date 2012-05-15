@@ -12,7 +12,6 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -26,6 +25,8 @@ import server.Server;
  */
 public class Display extends JFrame implements Serializable, Runnable {
 	
+	private static final int TIMER_VALUE = 10000;
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12346L;
 	
@@ -46,6 +47,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 	
 	/** The content displayed. */
 	private boolean contentDisplayed = false;
+	
 
 	/**
 	 * Initialize.
@@ -95,12 +97,31 @@ public class Display extends JFrame implements Serializable, Runnable {
 		displayTable.updateUI();
 	}
 	
+	public void paint(Graphics g){
+		Image image = null;
+		try {
+			image = ImageIO.read(new File("C:/Users/Elcot/Projects/Counter/Counter/Resources/Lighthouse.jpg"));
+		} catch (IOException e) {		
+			e.printStackTrace();
+		}
+		
+		g.drawImage(image, // draw it  
+                this.getWidth()/2 - image.getWidth(this) / 2, // at the center  
+                this.getHeight()/2 - image.getHeight(this) / 2, // of screen 
+                null);
+		
+	}
+	
+	public void playAudio(){
+		
+	}
+	
 	/**
 	 * Instantiates a new display.
 	 */
 	public Display() {
 		super("Queue management system...");		
-		this.setAlwaysOnTop(true);
+		//this.setAlwaysOnTop(true);	
 		this.initialize();
 		this.setSize(getMaximumSize());
 		this.setVisible(true);
@@ -126,24 +147,14 @@ public class Display extends JFrame implements Serializable, Runnable {
 	
 
 	@Override
-	public void paint(Graphics g){
-		try {
-			Image img = ImageIO.read(new File("C:/Users/Elcot/Projects/Counter/Counter/Resources/Lighthouse.jpg"));
-			g.drawImage(img, 0, 0,480,640, null);
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}
-	}
-	
-
-	@Override
 	public void run() {
 		if(Thread.currentThread().getName().equals("DataDisplay")){
 			while(true){
 				if(Server.myServer!=null){
 					DisplayValues d = Server.myServer.getNextInQueue();
-					if(d!=null){
+					if(d!=null){							
 						jp.setVisible(true);
+						jp.updateUI();
 						cycleData(d);
 					}
 				}
@@ -159,7 +170,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 			if(isContentDisplayed()){
 				try {					
 					setContentDisplayed(false);
-					Thread.sleep(10000);
+					Thread.sleep(TIMER_VALUE);
 				} catch (InterruptedException e) {					
 					e.printStackTrace();
 				}
@@ -167,8 +178,9 @@ public class Display extends JFrame implements Serializable, Runnable {
 				System.out.println("Displaying ad..");							
 				try {					
 					jp.setVisible(false);
+					jp.updateUI();
 					repaint();
-					Thread.sleep(10000);
+					Thread.sleep(TIMER_VALUE);
 				} catch (InterruptedException e) {					
 					e.printStackTrace();
 				}

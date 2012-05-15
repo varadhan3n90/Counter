@@ -34,6 +34,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12345L;
 	
+	private static final String settingsFile = "Resources/ServerSetting.obj";
+	
 	/** The Constant PORT. */
 	private static final int PORT = 8100;
 		
@@ -64,6 +66,10 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		else{			
 			return queue.remove();
 		}
+	}
+	
+	public String getSettingsFile(){
+		return settingsFile;
 	}
 	
 	/**
@@ -124,7 +130,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	 * New server.
 	 */
 	public void newServer(){
-		File f = new File("settings.obj");	
+		File f = new File(getSettingsFile());	
 		myServer = new Server();
 		myServer.initialize();
 		myServer.setVisible(true);
@@ -143,7 +149,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	 * Creates the server.
 	 */
 	public void CreateServer(){
-		File f = new File("settings.obj");
+		File f = new File(getSettingsFile());
 		try{
 			boolean createNew = true;			
 			if(f.exists()){
