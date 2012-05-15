@@ -1,5 +1,6 @@
 /*
- * 
+ * This class once invoked automatically saves the state of server
+ * regularly in seconds specified.
  */
 package server;
 
@@ -7,7 +8,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.*;
-
 
 
 /**
@@ -28,7 +28,8 @@ public class SaveState implements Runnable{
 	    	try {
 				Thread.sleep(timer);
 			} catch (InterruptedException e) {				
-				e.printStackTrace();
+				Logger log = Logger.getLogger(packageName);
+				log.log(Level.WARNING, e.getStackTrace().toString());
 			}
 		}
 	}

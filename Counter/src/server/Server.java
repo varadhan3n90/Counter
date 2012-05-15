@@ -1,5 +1,9 @@
 /*
- * 
+ * This is the main program.
+ * It provides token numbers to clients.
+ * Initializes the display.
+ * State is automatically saved every n seconds by SaveState class.
+ * State will be restored accordingly.
  */
 package server;
 
@@ -16,10 +20,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +43,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	private static final String packageName = "server";
 	
 	private static final boolean DEBUG = false;
+	
+	private static final boolean TESTING = false;
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12345L;
@@ -58,8 +66,20 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	/** The display screen. */
 	JButton displayScreen;
 	
-	/** The queue. */
+	/** The queue to hold token number and counter number. */
 	Queue<DisplayValues> queue;
+	
+	/** The queue to hold tokens that have been dispensed but not attended*/
+	Queue<Integer> tokensDispensed;
+	
+	public static final int CHECK_REQUEST = 250;
+	public static final int ACCEPT_REQUEST = 251;
+	public static final int NON_EMPTY_QUEUE = 252;
+	public static final int EMPTY_QUEUE = 253;
+	public static final int OK_MESSAGE = 254;
+	public static final int TEST_MESSAGE = 249;
+	public static final int TEST_REPLY = 248;
+	public static final int NEW_REQUEST = 247;
 	
 	/**
 	 * Gets the next in queue.
@@ -74,7 +94,10 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			return queue.remove();
 		}
 	}
-	
+	/**
+	 * 
+	 * @return settings file
+	 */
 	public String getSettingsFile(){
 		return settingsFile;
 	}
@@ -82,11 +105,13 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	/**
 	 * Initialize.
 	 */
-	public void initialize(){		
+	public void initialize(){
+		int HT = 500,WD = 500;
 		if(DEBUG) System.out.println("Initialize called.");
 		this.setTitle("Queue management system.");
 		GridLayout gl = new GridLayout(1,2);
 		this.setLayout(gl);
+		this.setSize(HT, WD);
 		setting = new JButton("Settings");
 		displayScreen = new JButton("Display Counter");
 		this.add(setting);
@@ -94,6 +119,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		setting.addActionListener(this);
 		displayScreen.addActionListener(this);
 		queue = new LinkedList<DisplayValues>();
+		tokensDispensed = new LinkedList<Integer>();
 	}
 	
 	/**
@@ -102,7 +128,12 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	 * @return the next token number
 	 */
 	public int getNextTokenNumber(){
-		tokenNumber++;
+		if(TESTING){
+			return new Random().nextInt(100);
+		}
+		tokenNumber = EMPTY_QUEUE;
+		if(!tokensDispensed.isEmpty())
+			tokenNumber = tokensDispensed.remove();
 		return tokenNumber;
 	}
 		
@@ -110,27 +141,55 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	 * Accept connections.
 	 */
 	public void acceptConnections(){
-		try{			
+		try{
+			
+			int nextToken = EMPTY_QUEUE,counterNumber=0;
 			if(DEBUG) System.out.println("Accept connections called.");
 			ServerSocket s = new ServerSocket(PORT);
 			while(true){
+				
 				if(DEBUG) System.out.println("Waiting for clients to connect..");
 				Socket client = s.accept();
 				if(DEBUG) System.out.println("Client connected..");
+				
 				DataInputStream in = new DataInputStream(client.getInputStream());
-				int counterNumber = in.read();
-				if(DEBUG) System.out.println("Counter: "+counterNumber);
-				int nextToken = getNextTokenNumber();
-				if(DEBUG) System.out.println("Token number"+nextToken);
 				DataOutputStream out = new DataOutputStream(client.getOutputStream());
-				out.write(nextToken);
+				
+				int clientValue = in.read();
+				if(DEBUG) System.out.println("Client value "+clientValue);
+				if(clientValue==TEST_MESSAGE){
+					if(DEBUG) System.out.println("Test message received");
+					out.write(TEST_REPLY);
+				}
+				
+				else if(clientValue==NEW_REQUEST){
+					if(DEBUG) System.out.println("New request received.");
+					out.write(OK_MESSAGE);
+					counterNumber = in.read();
+					nextToken = getNextTokenNumber();
+					out.write(nextToken);
+				}
+				
+				else if(clientValue==CHECK_REQUEST){
+					if(tokensDispensed.isEmpty())
+						out.write(EMPTY_QUEUE);
+					else
+						out.write(NON_EMPTY_QUEUE);
+				}
+				
 				out.close();
-				client.close();
-				DisplayValues next = new DisplayValues(counterNumber,nextToken);
-				if(queue!=null)
+				client.close();				
+				if(clientValue==NEW_REQUEST&&(queue!=null&&nextToken!=EMPTY_QUEUE)){
+					DisplayValues next = new DisplayValues(counterNumber,nextToken);
 					queue.add(next);
+				}
+				if(DEBUG) System.out.println("Counter: "+counterNumber);
+				if(DEBUG) System.out.println("Token number"+nextToken);
 			}
-		}catch(Exception e) {		
+		}catch(BindException be){
+			return;
+		}
+		catch(Exception e) {		
 			 Logger log = Logger.getLogger(packageName);
 			 log.log(Level.WARNING, e.getStackTrace().toString());		
 			if(DEBUG)	e.printStackTrace(); 
@@ -152,7 +211,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 				f.createNewFile();
 			} catch (IOException e1) {				
 				Logger log = Logger.getLogger(packageName);
-				log.log(Level.WARNING, e1.getStackTrace().toString());				
+				log.log(Level.WARNING, e1.getStackTrace().toString());
 				if(DEBUG) System.out.println("Unable to create file.");
 			}
 		}

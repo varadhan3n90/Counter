@@ -149,7 +149,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 	 */
 	public Display() {
 		super("Queue management system...");		
-		this.setAlwaysOnTop(true);
+		//this.setAlwaysOnTop(true);
 		this.initialize();
 		this.setSize(getMaximumSize());
 		this.setVisible(true);
