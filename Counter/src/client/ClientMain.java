@@ -11,11 +11,17 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The Class ClientMain.
  */
 public class ClientMain {
+	
+	private static final String packageName = "client";
+	
+	private static final boolean DEBUG = false;
 	
 	private static final String settingsFile = "Resources/ClientSetting.obj";
 	
@@ -33,27 +39,36 @@ public class ClientMain {
 				ObjectInputStream in = new ObjectInputStream(fis);
 				Client.myClient = (Client)in.readObject();
 				Client.myClient.setVisible(true);
-				System.out.println("Client initiated from existing settings.");
+				if(DEBUG) System.out.println("Client initiated from existing settings.");
 			}else{
-				System.out.println("New client created..");
+				if(DEBUG) System.out.println("New client created..");
 				f.createNewFile();
 				Client.myClient = new Client();
 				Client.myClient.setVisible(true);
 			}
+			
 			WindowListener listener = new WindowAdapter() {
 				@Override
 				public void windowClosing(WindowEvent e){
-					System.out.println("Client window closing.. Writing to file..");
+					if(DEBUG) System.out.println("Client window closing.. Writing to file..");
 					try{
 						FileOutputStream fos = new  FileOutputStream(new File(ClientMain.settingsFile));
 						ObjectOutputStream out = new ObjectOutputStream(fos);
 						out.writeObject(Client.myClient);
-						System.out.println("Exiting program");
+						if(DEBUG) System.out.println("Exiting program");
 						System.exit(0);
-					}catch(Exception ex){ ex.printStackTrace(); }
+					}catch(Exception ex){ 
+						Logger log = Logger.getLogger(packageName);
+						log.log(Level.WARNING, ex.getStackTrace().toString());
+					}
 				}
 			};
-			Client.myClient.addWindowListener(listener);						
-		}catch(Exception e){ e.printStackTrace(); }
+			
+			Client.myClient.addWindowListener(listener);
+			
+		}catch(Exception e){ 
+			Logger log = Logger.getLogger(packageName);
+			log.log(Level.WARNING, e.getStackTrace().toString()); 
+		}
 	}
 }

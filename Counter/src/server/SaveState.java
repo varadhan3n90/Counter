@@ -6,20 +6,27 @@ package server;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.*;
+
 
 
 /**
  * The Class SaveState.
  */
-public class SaveState implements Runnable{	
+public class SaveState implements Runnable{
+	
+	private boolean DEBUG = false;
+	private final String packageName = "server";
+	private final int timer = 5000;
 	
 	@Override
 	public void run() {
-		System.out.println("Save state called...");
+		if(DEBUG)
+			System.out.println("Save state called...");
 		while(true){
 	    	saveState();
 	    	try {
-				Thread.sleep(5000);
+				Thread.sleep(timer);
 			} catch (InterruptedException e) {				
 				e.printStackTrace();
 			}
@@ -35,7 +42,8 @@ public class SaveState implements Runnable{
 			ObjectOutputStream out = new ObjectOutputStream(fos);
 			out.writeObject(Server.myServer);
 		}catch(Exception ex) {
-			ex.printStackTrace(); 
+			 Logger log = Logger.getLogger(packageName);
+			 log.log(Level.WARNING, ex.getStackTrace().toString());
 		}		
 	}
 	

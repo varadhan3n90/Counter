@@ -12,7 +12,13 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,6 +31,10 @@ import server.Server;
  */
 public class Display extends JFrame implements Serializable, Runnable {
 	
+	private static final String packageName = "display";
+	
+	private static final boolean DEBUG = false;
+	
 	private static final int TIMER_VALUE = 10000;
 
 	/** The Constant serialVersionUID. */
@@ -36,14 +46,16 @@ public class Display extends JFrame implements Serializable, Runnable {
 	/** The table header. */
 	JTableHeader tableHeader;
 	
-	/** The jp. */
+	/** The jscroll pane. */
 	JScrollPane jp;
 	
 	/** The column names. */
 	String columnNames[] = {"Token Number","Counter Number"};
 	
 	/** The data. */
-	String[][] data= {{" "," "},{" "," "},{" "," "},{" "," "}};
+	String[][] data= {{" "," "},{" "," "},{" "," "},{" "," "},{" "," "}};
+	
+	private final String dingSound = "Resources/Ding.wav";
 	
 	/** The content displayed. */
 	private boolean contentDisplayed = false;
@@ -53,7 +65,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 	 * Initialize.
 	 */
 	private void initialize() {
-		System.out.println("Creating display tables.");		
+		if(DEBUG) System.out.println("Creating display tables.");		
 		Font font = new Font("Times New Roman", Font.BOLD, 40);		
 		displayTable = new JTable(data, columnNames);
 		displayTable.setFont(font);
@@ -86,7 +98,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 	 * @param d the d
 	 */
 	public void cycleData(DisplayValues d){
-		System.out.println("Cycle data called.");
+		if(DEBUG) System.out.println("Cycle data called.");
 		for(int i=data.length-1;i>=1;i--){
 			data[i][0] = data[i-1][0];
 			data[i][1] = data[i-1][1];
@@ -95,14 +107,16 @@ public class Display extends JFrame implements Serializable, Runnable {
 		data[0][0] = ""+d.tokenNumber;
 		contentDisplayed = true;
 		displayTable.updateUI();
+		playSound(dingSound);
 	}
 	
 	public void paint(Graphics g){
 		Image image = null;
 		try {
-			image = ImageIO.read(new File("C:/Users/Elcot/Projects/Counter/Counter/Resources/Lighthouse.jpg"));
+			image = ImageIO.read(new File("Resources/Lighthouse.jpg"));
 		} catch (IOException e) {		
-			e.printStackTrace();
+			Logger log = Logger.getLogger(packageName);
+			log.log(Level.WARNING, e.getStackTrace().toString());
 		}
 		
 		g.drawImage(image, // draw it  
@@ -112,16 +126,30 @@ public class Display extends JFrame implements Serializable, Runnable {
 		
 	}
 	
-	public void playAudio(){
-		
-	}
+	  public static synchronized void playSound(final String url) {
+		    new Thread(new Runnable() {
+		      public void run() {
+		        try {
+		        if(DEBUG) System.out.println("Going to play ding sound from "+url);
+		        Clip clip = AudioSystem.getClip();		        
+		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(url));
+		        clip.open(inputStream);
+		        clip.start(); 
+		        } catch (Exception e) {
+		        	Logger log = Logger.getLogger(packageName);
+					log.log(Level.WARNING, e.getStackTrace().toString());
+		        }
+		      }
+		    }).start();
+		  }
+
 	
 	/**
 	 * Instantiates a new display.
 	 */
 	public Display() {
 		super("Queue management system...");		
-		//this.setAlwaysOnTop(true);	
+		this.setAlwaysOnTop(true);
 		this.initialize();
 		this.setSize(getMaximumSize());
 		this.setVisible(true);
@@ -161,7 +189,8 @@ public class Display extends JFrame implements Serializable, Runnable {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {					
-					e.printStackTrace();
+					Logger log = Logger.getLogger(packageName);
+					log.log(Level.WARNING, e.getStackTrace().toString());
 				}
 			}
 		}
@@ -172,17 +201,19 @@ public class Display extends JFrame implements Serializable, Runnable {
 					setContentDisplayed(false);
 					Thread.sleep(TIMER_VALUE);
 				} catch (InterruptedException e) {					
-					e.printStackTrace();
+					Logger log = Logger.getLogger(packageName);
+					log.log(Level.WARNING, e.getStackTrace().toString());
 				}
 			}else{
-				System.out.println("Displaying ad..");							
+				if(DEBUG) System.out.println("Displaying ad..");							
 				try {					
 					jp.setVisible(false);
 					jp.updateUI();
 					repaint();
 					Thread.sleep(TIMER_VALUE);
 				} catch (InterruptedException e) {					
-					e.printStackTrace();
+					Logger log = Logger.getLogger(packageName);
+					log.log(Level.WARNING, e.getStackTrace().toString());
 				}
 			}
 		}

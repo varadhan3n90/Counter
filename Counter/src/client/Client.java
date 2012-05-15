@@ -10,6 +10,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,6 +23,9 @@ import javax.swing.JOptionPane;
  */
 public class Client extends JFrame implements ActionListener {
 	
+	private final static String packageName = "client";
+	
+	private final static boolean DEBUG = false;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -60997400387172441L;
 	
@@ -62,10 +68,12 @@ public class Client extends JFrame implements ActionListener {
 				out.close();
 				server.close();
 			} catch (UnknownHostException e1) {
-				System.out.println("Unknown host");
-				e1.printStackTrace();
+				if(DEBUG) System.out.println("Unknown host");
+				Logger log = Logger.getLogger(packageName);
+				log.log(Level.WARNING, e1.getStackTrace().toString());
 			} catch (IOException e1) {				
-				e1.printStackTrace();
+				Logger log = Logger.getLogger(packageName);
+				log.log(Level.WARNING, e1.getStackTrace().toString());
 			}
 		}		
 	}

@@ -20,6 +20,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -29,7 +32,11 @@ import display.*;;
 /**
  * The Class Server.
  */
-public class Server extends JFrame implements Serializable, ActionListener, Runnable{	
+public class Server extends JFrame implements Serializable, ActionListener, Runnable{
+	
+	private static final String packageName = "server";
+	
+	private static final boolean DEBUG = false;
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12345L;
@@ -76,7 +83,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	 * Initialize.
 	 */
 	public void initialize(){		
-		System.out.println("Initialize called.");
+		if(DEBUG) System.out.println("Initialize called.");
 		this.setTitle("Queue management system.");
 		GridLayout gl = new GridLayout(1,2);
 		this.setLayout(gl);
@@ -104,17 +111,17 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	 */
 	public void acceptConnections(){
 		try{			
-			System.out.println("Accept connections called.");
+			if(DEBUG) System.out.println("Accept connections called.");
 			ServerSocket s = new ServerSocket(PORT);
 			while(true){
-				System.out.println("Waiting for clients to connect..");
+				if(DEBUG) System.out.println("Waiting for clients to connect..");
 				Socket client = s.accept();
-				System.out.println("Client connected..");
+				if(DEBUG) System.out.println("Client connected..");
 				DataInputStream in = new DataInputStream(client.getInputStream());
 				int counterNumber = in.read();
-				System.out.println("Counter: "+counterNumber);
+				if(DEBUG) System.out.println("Counter: "+counterNumber);
 				int nextToken = getNextTokenNumber();
-				System.out.println("Token number"+nextToken);
+				if(DEBUG) System.out.println("Token number"+nextToken);
 				DataOutputStream out = new DataOutputStream(client.getOutputStream());
 				out.write(nextToken);
 				out.close();
@@ -123,7 +130,11 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 				if(queue!=null)
 					queue.add(next);
 			}
-		}catch(Exception e) { e.printStackTrace(); }
+		}catch(Exception e) {		
+			 Logger log = Logger.getLogger(packageName);
+			 log.log(Level.WARNING, e.getStackTrace().toString());		
+			if(DEBUG)	e.printStackTrace(); 
+		}
 	}
 	
 	/**
@@ -139,8 +150,10 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			f.delete();
 			try {
 				f.createNewFile();
-			} catch (IOException e1) {
-				System.out.println("Unable to create file.");
+			} catch (IOException e1) {				
+				Logger log = Logger.getLogger(packageName);
+				log.log(Level.WARNING, e1.getStackTrace().toString());				
+				if(DEBUG) System.out.println("Unable to create file.");
 			}
 		}
 	}
@@ -171,7 +184,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		WindowListener listner = new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we){
-				System.out.println("Main window closing");
+				if(DEBUG) System.out.println("Main window closing");
 				new SaveState().saveState();
 				System.exit(0);
 			}			
@@ -185,7 +198,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	
 	@Override
 	public void run(){
-		System.out.println("Run method called..");
+		if(DEBUG) System.out.println("Run method called..");
 		acceptConnections();
 	}
 	
@@ -196,10 +209,10 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			JOptionPane.showMessageDialog(null, "Setting button pressed");
 		}
 		if(ae.getActionCommand().equals("Display Counter")){
-			System.out.println("Display counter button pressed");				
-			Thread t = new Thread(this);			
-			t.start();
-			this.setVisible(false);			
+			if(DEBUG) System.out.println("Display counter button pressed");			
+			Thread t = new Thread(this);
+			t.start();			
+			this.setVisible(false);
 			Display	display = new Display();
 			display.setVisible(true);			
 		}
