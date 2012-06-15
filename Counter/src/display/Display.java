@@ -10,11 +10,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -53,23 +54,42 @@ public class Display extends JFrame implements Serializable, Runnable {
 	String columnNames[] = {"Token Number","Counter Number"};
 	
 	/** The data. */
-	String[][] data= {{" "," "},{" "," "},{" "," "},{" "," "},{" "," "}};
+	String[][] data= {{" "," "},{" "," "},{" "," "}};
 	
 	private final String dingSound = "Resources/Ding.wav";
 	
 	/** The content displayed. */
 	private boolean contentDisplayed = false;
 	
+	ArrayList<File> ads;
 
+	private int adCounter = 0;
+	
+	private void initializeAds(){
+		ads = new ArrayList<File>();
+		File folder = new File("Resources");
+		FilenameFilter ff = new FilenameFilter() {			
+			@Override
+			public boolean accept(File arg0, String arg1) {
+				return arg1.endsWith("jpg");
+			}
+		};
+		File f[] = folder.listFiles(ff);
+		for(int i=0;i<f.length;i++){
+			ads.add(f[i]);
+		}
+	}
+	
 	/**
 	 * Initialize.
 	 */
 	private void initialize() {
+		initializeAds();
 		if(DEBUG) System.out.println("Creating display tables.");		
-		Font font = new Font("Times New Roman", Font.BOLD, 40);		
+		Font font = new Font("Times New Roman", Font.BOLD, 140);		
 		displayTable = new JTable(data, columnNames);
 		displayTable.setFont(font);
-		displayTable.setRowHeight(100);
+		displayTable.setRowHeight(200);
 		jp = new JScrollPane(displayTable);		
 		getContentPane().add(jp);
 	}
@@ -113,7 +133,13 @@ public class Display extends JFrame implements Serializable, Runnable {
 	public void paint(Graphics g){
 		Image image = null;
 		try {
-			image = ImageIO.read(new File("Resources/Lighthouse.jpg"));
+			if(adCounter > ads.size()){
+				adCounter = 0;
+			}else{
+				adCounter++;				
+			}
+			File f = ads.get(adCounter);
+			image = ImageIO.read(f);
 		} catch (IOException e) {		
 			Logger log = Logger.getLogger(packageName);
 			log.log(Level.WARNING, e.getStackTrace().toString());

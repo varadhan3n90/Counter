@@ -26,7 +26,10 @@ public class Client extends JFrame implements ActionListener,Runnable {
 	
 	private final static String packageName = "client";
 	
-	private final static boolean DEBUG = false;
+	private final static boolean DEBUG = true;
+	
+	private boolean threadStarted = false;
+	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -60997400387172441L;
 	
@@ -43,14 +46,14 @@ public class Client extends JFrame implements ActionListener,Runnable {
 	
 	private String serverIP="localhost";
 	
-	public static final int CHECK_REQUEST = 250;
-	public static final int ACCEPT_REQUEST = 251;
-	public static final int NON_EMPTY_QUEUE = 252;
-	public static final int EMPTY_QUEUE = 253;
-	public static final int OK_MESSAGE = 254;
-	public static final int TEST_MESSAGE = 249;
-	public static final int TEST_REPLY = 248;
-	public static final int NEW_REQUEST = 247;
+	public static final int CHECK_REQUEST = -1;
+	public static final int ACCEPT_REQUEST = -2;
+	public static final int NON_EMPTY_QUEUE = -3;
+	public static final int EMPTY_QUEUE = -4;
+	public static final int OK_MESSAGE = -5;
+	public static final int TEST_MESSAGE = -6;
+	public static final int TEST_REPLY = -7;
+	public static final int NEW_REQUEST = -8;
 	
 	/** The next client. */
 	JButton nextClient;
@@ -94,8 +97,8 @@ public class Client extends JFrame implements ActionListener,Runnable {
 			Socket server = new Socket(serverIP,PORT);
 			DataOutputStream out = new DataOutputStream(server.getOutputStream());
 			DataInputStream in = new DataInputStream(server.getInputStream());
-			out.write(CHECK_REQUEST);
-			int result = in.read();
+			out.writeInt(CHECK_REQUEST);
+			int result = in.readInt();
 			if(result == NON_EMPTY_QUEUE){
 				return;
 			}
@@ -110,14 +113,14 @@ public class Client extends JFrame implements ActionListener,Runnable {
 		Socket server = new Socket(serverIP,PORT);
 		DataOutputStream out = new DataOutputStream(server.getOutputStream());
 		DataInputStream in = new DataInputStream(server.getInputStream());
-		out.write(NEW_REQUEST);
-		int reply = in.read();
+		out.writeInt(NEW_REQUEST);
+		int reply = in.readInt();
 		if(DEBUG) System.out.println("Reply from server "+reply );
 		if(reply!=OK_MESSAGE){
 			JOptionPane.showMessageDialog(null, "Server response not proper", "Error", JOptionPane.ERROR_MESSAGE);			
 		}else{
-			out.write(counterNumber);		
-			reply = in.read();
+			out.writeInt(counterNumber);		
+			reply = in.readInt();
 			if(reply!=EMPTY_QUEUE){
 				if(DEBUG) System.out.println("Queue not is empty now. "+reply);
 				JOptionPane.showMessageDialog(null, "Next Token "+reply);
@@ -125,7 +128,7 @@ public class Client extends JFrame implements ActionListener,Runnable {
 			else{
 				if(DEBUG) System.out.println("Queue is empty "+reply);
 				nextClient.setBackground(Color.RED);
-				if(t!=null)				
+				if(t!=null&&!threadStarted)				
 					t.start();
 			}
 		}
@@ -136,9 +139,11 @@ public class Client extends JFrame implements ActionListener,Runnable {
 
 
 	@Override
-	public void run() {	
+	public void run() {
+		threadStarted = true;
 		waitForClients();
 		nextClient.setBackground(Color.GREEN);
+		threadStarted = false;
 		if(DEBUG) System.out.println("Queue is not empty");
 	}	
 	

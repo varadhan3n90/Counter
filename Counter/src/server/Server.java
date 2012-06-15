@@ -25,10 +25,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -44,7 +42,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	
 	private static final boolean DEBUG = false;
 	
-	private static final boolean TESTING = false;
+	private static final boolean TESTING = true;
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12345L;
@@ -72,14 +70,16 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	/** The queue to hold tokens that have been dispensed but not attended*/
 	Queue<Integer> tokensDispensed;
 	
-	public static final int CHECK_REQUEST = 250;
-	public static final int ACCEPT_REQUEST = 251;
-	public static final int NON_EMPTY_QUEUE = 252;
-	public static final int EMPTY_QUEUE = 253;
-	public static final int OK_MESSAGE = 254;
-	public static final int TEST_MESSAGE = 249;
-	public static final int TEST_REPLY = 248;
-	public static final int NEW_REQUEST = 247;
+	public static final int CHECK_REQUEST = -1;
+	public static final int ACCEPT_REQUEST = -2;
+	public static final int NON_EMPTY_QUEUE = -3;
+	public static final int EMPTY_QUEUE = -4;
+	public static final int OK_MESSAGE = -5;
+	public static final int TEST_MESSAGE = -6;
+	public static final int TEST_REPLY = -7;
+	public static final int NEW_REQUEST = -8;
+	
+	private static final int TEST_QUEUE_LIMIT = 10;
 	
 	/**
 	 * Gets the next in queue.
@@ -122,15 +122,25 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		tokensDispensed = new LinkedList<Integer>();
 	}
 	
+	private void createTestQueue(){
+		if(TESTING){
+			for(int i=0;i<TEST_QUEUE_LIMIT;i++){
+				tokensDispensed.add(i+1);
+			}
+		}
+	}
+	
 	/**
 	 * Gets the next token number.
 	 *
 	 * @return the next token number
 	 */
 	public int getNextTokenNumber(){
+		/*
 		if(TESTING){
 			return new Random().nextInt(100);
 		}
+		*/
 		tokenNumber = EMPTY_QUEUE;
 		if(!tokensDispensed.isEmpty())
 			tokenNumber = tokensDispensed.remove();
@@ -145,6 +155,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			
 			int nextToken = EMPTY_QUEUE,counterNumber=0;
 			if(DEBUG) System.out.println("Accept connections called.");
+			if(TESTING) createTestQueue();
 			ServerSocket s = new ServerSocket(PORT);
 			while(true){
 				
@@ -155,26 +166,26 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 				DataInputStream in = new DataInputStream(client.getInputStream());
 				DataOutputStream out = new DataOutputStream(client.getOutputStream());
 				
-				int clientValue = in.read();
+				int clientValue = in.readInt();
 				if(DEBUG) System.out.println("Client value "+clientValue);
 				if(clientValue==TEST_MESSAGE){
 					if(DEBUG) System.out.println("Test message received");
-					out.write(TEST_REPLY);
+					out.writeInt(TEST_REPLY);
 				}
 				
 				else if(clientValue==NEW_REQUEST){
 					if(DEBUG) System.out.println("New request received.");
-					out.write(OK_MESSAGE);
-					counterNumber = in.read();
+					out.writeInt(OK_MESSAGE);
+					counterNumber = in.readInt();
 					nextToken = getNextTokenNumber();
-					out.write(nextToken);
+					out.writeInt(nextToken);
 				}
 				
 				else if(clientValue==CHECK_REQUEST){
 					if(tokensDispensed.isEmpty())
-						out.write(EMPTY_QUEUE);
+						out.writeInt(EMPTY_QUEUE);
 					else
-						out.write(NON_EMPTY_QUEUE);
+						out.writeInt(NON_EMPTY_QUEUE);
 				}
 				
 				out.close();
@@ -270,7 +281,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		if(ae.getActionCommand().equals("Display Counter")){
 			if(DEBUG) System.out.println("Display counter button pressed");			
 			Thread t = new Thread(this);
-			t.start();			
+			t.start();
 			this.setVisible(false);
 			Display	display = new Display();
 			display.setVisible(true);			
