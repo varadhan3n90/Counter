@@ -1,0 +1,1832 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN"
+                             "jpos/res/jcl.dtd">
+<JposEntries>
+<!--Saved by JavaPOS jpos.config/loader (JCL) version 2.2.0 on 12/03/02 14:38-->
+    
+    <JposEntry logicalName="CITIZEN 1000II Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_1000PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN 1000II POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN 1000II POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN 1000II USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_1000PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN 1000II POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN 1000II POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CitizenCDS500PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CD-S500 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="33"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="76.2mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CitizenCDS500PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CD-S500 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="33"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="76.2mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CitizenCDS500PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CD-S500 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="33"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="76.2mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S2000PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S2000 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S2000PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S2000 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S2000PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S2000 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S281 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen281PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S281 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S281 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="32"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="58mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="9600"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S281 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen281PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S281 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S281 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="32"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="58mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S300PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S300 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S300PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S300 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S300PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S300 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen310PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S310 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen310PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S310 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen310PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S310 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310II Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen310IIPrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S310II POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310II POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310II USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen310IIPrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S310II POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310II POS Printer"/>
+        <prop name="PortName" type="String" value="USB002"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S4000PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S4000 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="69"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="112mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S4000PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S4000 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="69"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="112mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CBM_S4000PrinterService"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S4000 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="69"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="112mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen601PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S601 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen601PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S601 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen601PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S601 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen651PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S651 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen651PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S651 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen651PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S651 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen801PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S801 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen801PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S801 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen801PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S801 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen851PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S851 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 POS Printer"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen851PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S851 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 POS Printer"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.Citizen851PrinterServices"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="POSPrinter" version="1.11"/>
+        <product description="Jpos printer driver" name="CITIZEN CT-S851 POS printer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 POS Printer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="PrinterLanguage" type="String" value="0"/>
+        <prop name="Columns" type="String" value="48"/>
+        <prop name="CharacterSet" type="String" value="437"/>
+        <prop name="UseNVRAM" type="String" value="0"/>
+        <prop name="PaperModel" type="String" value="80mm"/>
+        <prop name="deviceBus" type="String" value="USB"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN 1000II Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN 1000II Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN 1000II Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN 1000II Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN 1000II Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN 1000II Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN 1000II Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN 1000II Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN 1000II Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN 1000II Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN 1000II Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN 1000II Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CD-S500 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CD-S500 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CD-S500 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CD-S500 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CD-S500 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN CDS500 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CD-S500 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CD-S500 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S2000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S2000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S2000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S2000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S2000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S2000 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S2000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S2000 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S300 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S300 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S300 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S300 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Cash Drawer 2 Parallel Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S300 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 Cash Drawer"/>
+        <prop name="deviceBus" type="String" value="Parallel"/>
+        <prop name="PortName" type="String" value="LPT1"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S300 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S300 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S300 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S300 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310II Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310II Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310II Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310II Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310II Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310II Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310II Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310II Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310II Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S310II Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S310II Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S310II Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S4000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S4000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S4000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S4000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S4000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S4000 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S4000 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S4000 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S601 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S601 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S601 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S601 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S601 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S601 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S601 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S601 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S651 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S651 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S651 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S651 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S651 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S651 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S651 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S651 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S801 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S801 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S801 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S801 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S801 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S801 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S801 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S801 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 Cash Drawer 1 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S851 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 Cash Drawer 1 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S851 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 Cash Drawer 1 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService1"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S851 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 Cash Drawer 2 Ethernet Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S851 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="PortName" type="String" value="IP_192.168.82.21"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="PortNumber" type="String" value="9100"/>
+        <prop name="deviceBus" type="String" value="Ethernet"/>
+        <prop name="IPAddress" type="String" value="192.168.82.21"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 Cash Drawer 2 Serial Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S851 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 Cash Drawer"/>
+        <prop name="CapStatus" type="String" value="1"/>
+        <prop name="dataBits" type="String" value="8"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="parity" type="String" value="None"/>
+        <prop name="flowControl" type="String" value="Hardware"/>
+        <prop name="stopBits" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="RS232"/>
+        <prop name="baudRate" type="String" value="19200"/>
+        <prop name="OnTime" type="String" value="5"/>
+</JposEntry>
+    
+    
+    <JposEntry logicalName="CITIZEN S851 Cash Drawer 2 USB Windows">
+        <creation factoryClass="jpos.loader.simple.SimpleJPOSServiceInstanceFactory" serviceClass="jpos.services.CashDrawerService2"/>
+        <vendor name="CITIZEN" url="http://www.citizen-systems.co.jp"/>
+        <jpos category="CashDrawer" version="1.11"/>
+        <product description="Jpos Cash Drawer Driver" name="CITIZEN CT-S851 Cash Drawer" url="http://www.citizen-systems.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="deviceBus" type="String" value="USB"/>
+        <prop name="PhysicalDevice" type="String" value="CITIZEN CT-S851 Cash Drawer"/>
+        <prop name="PortName" type="String" value="USB001"/>
+        <prop name="OnTime" type="String" value="5"/>
+        <prop name="Pin3" type="String" value="1"/>
+        <prop name="CapStatus" type="String" value="1"/>
+</JposEntry>
+    
+</JposEntries>
