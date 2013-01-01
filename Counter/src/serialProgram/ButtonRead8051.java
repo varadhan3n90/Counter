@@ -5,7 +5,6 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 public class ButtonRead8051 {
     void connect ( String portName ) throws Exception
