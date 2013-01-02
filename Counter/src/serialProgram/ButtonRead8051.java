@@ -19,8 +19,11 @@ import java.io.InputStream;
  */
 public class ButtonRead8051 {
 	
+	/** The Com port to be used. */
+	String portName;
+	
 	/**
-	 * 
+	 * Predefined settings of 9600 baud rate. 1 stop bit and 8 data bits.
 	 * @param portName example COM1, COM2
 	 * @throws NoSuchPortException 
 	 * @throws PortInUseException 
@@ -28,35 +31,47 @@ public class ButtonRead8051 {
 	 * @throws IOException 
 	 * @throws Exception
 	 */
-    void connect ( String portName ) throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException {
+	
+	
+    public String readPort ( ) throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException {
     	
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
         if ( portIdentifier.isCurrentlyOwned() ){
             System.out.println("Error: Port is currently in use");
-        }
+            throw new PortInUseException();
+        } 
         else{            
         	CommPort commPort = portIdentifier.open(this.getClass().getName(),2000);            
             if ( commPort instanceof SerialPort ){
                 SerialPort serialPort = (SerialPort) commPort;
                 serialPort.setSerialPortParams(9600,SerialPort.DATABITS_8,SerialPort.STOPBITS_1,SerialPort.PARITY_NONE);                
                 InputStream in = serialPort.getInputStream();                
-                while(true){
-                	
+                while(true){                	
 					byte[] bs = new byte[1];
 					in.read(bs);
 					String st = new String(bs).trim();
 					if(st!=null&&!st.equals(""))
-					System.out.println("read: "+new String(bs));
-				
+						return new String(bs);
+					//System.out.println("read: "+new String(bs));				
                 }
             }
             else {
-                System.out.println("Error: Only serial ports are handled by this example.");
+            	throw new UnsupportedCommOperationException();
+                //System.out.println("Error: Only serial ports are handled by this example.");
             }
         }     
     }
     
-    /** class to read from serial stream */
+    public ButtonRead8051(String portName){
+    	this.portName = portName;    	
+    }
+    
+    /** class to read from serial stream.
+     *  Modified the above connect function to perform the same
+     *  This class is not required separately.
+     */
+    
+    /*
     public static class SerialReader implements Runnable {
         InputStream in;        
         public SerialReader ( InputStream in ){
@@ -75,7 +90,12 @@ public class ButtonRead8051 {
             }            
         }
     }
+	*/
 
+    /** Code to test 8051 serial connection.
+     *  Assumes serial port is Com1.
+     *  Some chinese make usb to serial controllers do not work as prolific driver is not supported.
+     */
     /*
     public static void main ( String[] args ){
         try{
