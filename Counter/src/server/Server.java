@@ -7,6 +7,10 @@
  */
 package server;
 
+import gnu.io.NoSuchPortException;
+import gnu.io.PortInUseException;
+import gnu.io.UnsupportedCommOperationException;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +34,10 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import printing.CitizenPOSPrinting;
+
+import serialProgram.ButtonRead8051;
 import display.*;
 
 
@@ -42,7 +50,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	
 	private static final boolean DEBUG = false;
 	
-	private static final boolean TESTING = true;
+	// private static final boolean TESTING = false;
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12345L;
@@ -68,7 +76,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	Queue<DisplayValues> queue;
 	
 	/** The queue to hold tokens that have been dispensed but not attended*/
-	Queue<Integer> tokensDispensed;
+	Queue<Token> tokensDispensed;
 	
 	public static final int CHECK_REQUEST = -1;
 	public static final int ACCEPT_REQUEST = -2;
@@ -79,7 +87,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	public static final int TEST_REPLY = -7;
 	public static final int NEW_REQUEST = -8;
 	
-	private static final int TEST_QUEUE_LIMIT = 10;
+	// private static final int TEST_QUEUE_LIMIT = 10;
 	
 	/**
 	 * Gets the next in queue.
@@ -119,22 +127,26 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		setting.addActionListener(this);
 		displayScreen.addActionListener(this);
 		queue = new LinkedList<DisplayValues>();
-		tokensDispensed = new LinkedList<Integer>();
+		tokensDispensed = new LinkedList<Token>();
 	}
 	
+	/*
 	private void createTestQueue(){
 		if(TESTING){
 			for(int i=0;i<TEST_QUEUE_LIMIT;i++){
-				tokensDispensed.add(i+1);
+				// If tokens are of type integer then -----> tokensDispensed.add(i+1);
+				// TODO: Add logic for creating test tokens
 			}
 		}
 	}
+	*/
 	
 	/**
 	 * Gets the next token number.
 	 *
 	 * @return the next token number
 	 */
+	// TODO : change return type to token instead of token number
 	public int getNextTokenNumber(){
 		/*
 		if(TESTING){
@@ -143,7 +155,9 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		*/
 		tokenNumber = EMPTY_QUEUE;
 		if(!tokensDispensed.isEmpty())
-			tokenNumber = tokensDispensed.remove();
+			// tokenNumber = tokensDispensed.remove();
+			// TODO: return the token number to be dispensed
+			;
 		return tokenNumber;
 	}
 		
@@ -155,7 +169,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			
 			int nextToken = EMPTY_QUEUE,counterNumber=0;
 			if(DEBUG) System.out.println("Accept connections called.");
-			if(TESTING) createTestQueue();
+			// TODO: Call createTestQueue after implementation for testing
+			// if(TESTING) createTestQueue();
 			ServerSocket s = new ServerSocket(PORT);
 			while(true){
 				
@@ -287,5 +302,39 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			display.setVisible(true);			
 		}
 	}
+	
+	
+	class SerialCommunication extends Thread {
+		Queue<Integer> queue;
+		String port;
+		public SerialCommunication(Queue<Integer> tokenQueue,String port){
+			queue = tokenQueue;
+			this.port = port;
+		}
+		
+		private String createTokenID(String value){
+			// TODO: add logic to make the token and add it to queue based on 
+			return null;
+		}
+		
+		
+		public void run(){
+			ButtonRead8051 tokenDispenser = new ButtonRead8051(port);
+			String requestTokenNumber = "Token Dispenser Not working";
+			try {
+				String value = tokenDispenser.readPort();
+				requestTokenNumber = createTokenID(value);
+				// TODO: Add logic for different queues on different values.
+				
+			} catch (NoSuchPortException | PortInUseException
+					| UnsupportedCommOperationException | IOException e) {				
+				// TODO: Log values
+			}
+			CitizenPOSPrinting print = CitizenPOSPrinting.getInstance();
+			print.printToken(requestTokenNumber);
+			
+		}
+	}
+	
 	
 }
