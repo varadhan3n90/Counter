@@ -1,13 +1,17 @@
 package printing;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.Date;
+import java.util.Properties;
 
 import jpos.JposException;
 import jpos.POSPrinter;
 import jpos.POSPrinterConst;
 
 public class CitizenPOSPrinting {
+	
+	static CitizenPOSPrinting citizenPrinter = new CitizenPOSPrinting();
 	
 	public void printToken(String tokenNumber) {
 		String PrinterDevice="CITIZEN S310II USB Windows";
@@ -17,12 +21,14 @@ public class CitizenPOSPrinting {
 			printer.open(PrinterDevice);
 			printer.claim(1000);
 			claimed = true;
-			System.out.println("Device claimed");
+			//System.out.println("Device claimed");
 			printer.setDeviceEnabled(true);
 			printer.printNormal(2,"\033|cAWelcome to\n");
-			String logoFileName = "Sample01.bmp";			
-			String logoFile = new File("Resources/"+logoFileName).getAbsolutePath().replace('\\', '/');
-			System.out.println(logoFile);
+			Properties properties = new Properties();
+			properties.load(new FileInputStream(new File("Resources/serverstart.properties")));
+			String logoFileName = properties.getProperty("logoFile");			
+			String logoFile = new File(logoFileName).getAbsolutePath().replace('\\', '/');
+			//System.out.println(logoFile);
             printer.setBitmap(1, 2, "file:/"+logoFile, POSPrinterConst.PTR_BM_ASIS, -1);
             printer.transactionPrint(2, POSPrinterConst.PTR_TP_TRANSACTION);
 			printer.printNormal(2, "\033|cA\033|1B\n");			            
@@ -58,4 +64,13 @@ public class CitizenPOSPrinting {
 		new CitizenPOSPrinting().printToken("1");
 	}
 	*/
+	
+	/** Single ton object */
+	private CitizenPOSPrinting(){
+		
+	}
+	
+	public static CitizenPOSPrinting getInstance(){
+		return citizenPrinter;
+	}
 }
