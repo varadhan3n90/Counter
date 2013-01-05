@@ -136,7 +136,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 			if(adCounter > ads.size()){
 				adCounter = 0;
 			}else{
-				adCounter++;				
+				adCounter = (adCounter+1)%ads.size();				
 			}
 			File f = ads.get(adCounter);
 			image = ImageIO.read(f);
