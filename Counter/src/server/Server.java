@@ -4,6 +4,14 @@
  * Initializes the display.
  * State is automatically saved every n seconds by SaveState class.
  * State will be restored accordingly.
+ * 
+ * Working:
+ * myserver is a static object that can be initialized using serialization.
+ * myserver.setVisible(true) will show the initial window with two buttons Display and settings.
+ * When this is done and Display is clicked a new object for display is created which need not be serialized as display details are not stored (local object not object of class).
+ * Also only when the display window is shown the token dispenser would work as only during that time serial values are read.
+ * Only members of server class such as the finalTokenissued and tokens dispensed are maintained and serialized.
+ * 
  */
 package server;
 
@@ -48,9 +56,9 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	
 	private static final String packageName = "server";
 	
-	private static final boolean DEBUG = false;
+	private static final boolean DEBUG = true;
 	
-	// private static final boolean TESTING = false;
+	private static final boolean TESTING = true;
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12345L;
@@ -64,7 +72,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	public static Server myServer;
 	
 	/** The token number. */
-	private int tokenNumber = 0;
+	//private int tokenNumber = 0;
 	
 	/** The setting. */
 	JButton setting;
@@ -78,6 +86,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	/** The queue to hold tokens that have been dispensed but not attended*/
 	Queue<Token> tokensDispensed;
 	
+	private int finalTokenNumberIssued = 0;
+	
 	public static final int CHECK_REQUEST = -1;
 	public static final int ACCEPT_REQUEST = -2;
 	public static final int NON_EMPTY_QUEUE = -3;
@@ -87,7 +97,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	public static final int TEST_REPLY = -7;
 	public static final int NEW_REQUEST = -8;
 	
-	// private static final int TEST_QUEUE_LIMIT = 10;
+	private static final int TEST_QUEUE_LIMIT = 10;
 	
 	/**
 	 * Gets the next in queue.
@@ -130,35 +140,39 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		tokensDispensed = new LinkedList<Token>();
 	}
 	
-	/*
+	
 	private void createTestQueue(){
 		if(TESTING){
 			for(int i=0;i<TEST_QUEUE_LIMIT;i++){
-				// If tokens are of type integer then -----> tokensDispensed.add(i+1);
-				// TODO: Add logic for creating test tokens
+				// If tokens are of type integer then -----> tokensDispensed.add(i+1);				
+				Token t = new Token(i+1);
+				tokensDispensed.add(t);
 			}
 		}
 	}
-	*/
+	
 	
 	/**
 	 * Gets the next token number.
 	 *
 	 * @return the next token number
 	 */
-	// TODO : change return type to token instead of token number
-	public int getNextTokenNumber(){
+	public Token getNextToken(){
 		/*
 		if(TESTING){
 			return new Random().nextInt(100);
 		}
 		*/
+		// Changing logic here
+		/*
 		tokenNumber = EMPTY_QUEUE;
 		if(!tokensDispensed.isEmpty())
-			// tokenNumber = tokensDispensed.remove();
-			// TODO: return the token number to be dispensed
-			;
+			 tokenNumber = tokensDispensed.remove();
+			// TODO: return the token number to be dispensed			
 		return tokenNumber;
+		*/
+		
+		return tokensDispensed.remove();
 	}
 		
 	/**
@@ -170,7 +184,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			int nextToken = EMPTY_QUEUE,counterNumber=0;
 			if(DEBUG) System.out.println("Accept connections called.");
 			// TODO: Call createTestQueue after implementation for testing
-			// if(TESTING) createTestQueue();
+			if(TESTING) createTestQueue();
 			ServerSocket s = new ServerSocket(PORT);
 			while(true){
 				
@@ -192,7 +206,9 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 					if(DEBUG) System.out.println("New request received.");
 					out.writeInt(OK_MESSAGE);
 					counterNumber = in.readInt();
-					nextToken = getNextTokenNumber();
+					nextToken = getNextToken().getTokenValue();
+					// Problem is token number is assumed to be integer
+					// TODO: In case token number is made to contain string also then send either 2 integers or send a string instead of token number
 					out.writeInt(nextToken);
 				}
 				
@@ -263,7 +279,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			if(createNew){				
 				myServer.setVisible(true);				
 			}			
-		}catch(Exception e){			
+		}catch(Exception e){
+			if(DEBUG) e.printStackTrace();
 			newServer();						
 		}
 		WindowListener listner = new WindowAdapter() {
@@ -277,7 +294,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		myServer.addWindowListener(listner);
 		myServer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		Thread t = new Thread(new SaveState());
-		t.start();
+		t.start();		
 	}
 	
 	
@@ -299,22 +316,30 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			t.start();
 			this.setVisible(false);
 			Display	display = new Display();
-			display.setVisible(true);			
+			display.setVisible(true);
+			// TODO: Serial communication function my be called here
+			SerialCommunication embeddedDevice = new SerialCommunication(tokensDispensed, "COM1");
+			embeddedDevice.start();
 		}
 	}
 	
 	
 	class SerialCommunication extends Thread {
-		Queue<Integer> queue;
+		Queue<Token> queue;
 		String port;
-		public SerialCommunication(Queue<Integer> tokenQueue,String port){
+		
+		public SerialCommunication(Queue<Token> tokenQueue,String port){
 			queue = tokenQueue;
 			this.port = port;
 		}
 		
 		private String createTokenID(String value){
-			// TODO: add logic to make the token and add it to queue based on 
-			return null;
+			// TODO: add logic to make the token and add it to queue based on
+			// Temporary logic has been added for testing purpose.
+			finalTokenNumberIssued ++;
+			Token t = new Token(finalTokenNumberIssued);
+			tokensDispensed.add(t);
+			return t.getTokenValue()+"";
 		}
 		
 		
