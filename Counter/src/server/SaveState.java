@@ -15,7 +15,7 @@ import java.util.logging.*;
  */
 public class SaveState implements Runnable{
 	
-	private boolean DEBUG = false;
+	private boolean DEBUG = true;
 	private final String packageName = "server";
 	private final int timer = 5000;
 	
@@ -45,6 +45,7 @@ public class SaveState implements Runnable{
 		}catch(Exception ex) {
 			 Logger log = Logger.getLogger(packageName);
 			 log.log(Level.WARNING, ex.getStackTrace().toString());
+			 if(DEBUG) ex.printStackTrace();
 		}		
 	}
 	
