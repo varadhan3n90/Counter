@@ -1,4 +1,4 @@
-package server;
+package utility;
 import java.io.FileInputStream;
 import java.util.Properties;
 
@@ -47,6 +47,16 @@ public class ConfigurationReader {
 		   return "";
 	   else
 		   return property;
+   }
+   
+   public static void setClientInit(String key,String value)
+   {
+	  CLIENT_INIT_PROPERTIES.setProperty(key, value);
+   }
+   
+   public static void setServerInit(String key,String value)
+   {
+	   SERVER_INIT_PROPERTIES.setProperty(key, value);
    }
 
 }
