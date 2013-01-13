@@ -26,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
 import server.Server;
+import utility.ConfigurationReader;
 
 /**
  * The Class Display.
@@ -51,12 +52,14 @@ public class Display extends JFrame implements Serializable, Runnable {
 	JScrollPane jp;
 	
 	/** The column names. */
-	String columnNames[] = {"Token Number","Counter Number"};
+	String column1 = ConfigurationReader.getServerInit("header1");
+	String column2 = ConfigurationReader.getServerInit("header2");
+	String columnNames[] = {column1,column2};
 	
 	/** The data. */
 	String[][] data= {{" "," "},{" "," "},{" "," "}};
 	
-	private final String dingSound = "Resources/Ding.wav";
+	//private final String dingSound = "Resources/sounds/Ding.wav";
 	
 	/** The content displayed. */
 	private boolean contentDisplayed = false;
@@ -67,7 +70,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 	
 	private void initializeAds(){
 		ads = new ArrayList<File>();
-		File folder = new File("Resources");
+		File folder = new File("Resources/ads");
 		FilenameFilter ff = new FilenameFilter() {			
 			@Override
 			public boolean accept(File arg0, String arg1) {
@@ -90,6 +93,8 @@ public class Display extends JFrame implements Serializable, Runnable {
 		displayTable = new JTable(data, columnNames);
 		displayTable.setFont(font);
 		displayTable.setRowHeight(200);
+		tableHeader = displayTable.getTableHeader();
+		tableHeader.setFont(font);
 		jp = new JScrollPane(displayTable);		
 		getContentPane().add(jp);
 	}
@@ -112,12 +117,25 @@ public class Display extends JFrame implements Serializable, Runnable {
 		this.contentDisplayed = contentDisplayed;
 	}
 	
+	
+	private void tellNumber(int number){
+		String numberString = number + "";		
+		for(int i=0;i<numberString.length();i++){
+			int val = numberString.charAt(i) - '0';
+			String playFile = "Resources/sounds/"+val+".wav";
+			System.out.println("playing"+playFile);
+			playSound("Resources/sounds/Token_no.wav");
+			playSound(playFile);			
+		}
+	}
+	
+	
 	/**
 	 * Cycle data.
 	 *
 	 * @param d the d
 	 */
-	public void cycleData(DisplayValues d){
+	public synchronized void cycleData(DisplayValues d){
 		if(DEBUG) System.out.println("Cycle data called.");
 		for(int i=data.length-1;i>=1;i--){
 			data[i][0] = data[i-1][0];
@@ -127,7 +145,9 @@ public class Display extends JFrame implements Serializable, Runnable {
 		data[0][0] = ""+d.tokenNumber;
 		contentDisplayed = true;
 		displayTable.updateUI();
-		playSound(dingSound);
+		//playSound(dingSound);
+		//playSound("Resources/sounds/Token_no.wav");
+		tellNumber(d.tokenNumber);
 	}
 	
 	public void paint(Graphics g){
@@ -153,20 +173,18 @@ public class Display extends JFrame implements Serializable, Runnable {
 	}
 	
 	  public static synchronized void playSound(final String url) {
-		    new Thread(new Runnable() {
-		      public void run() {
-		        try {
+		    try {
 		        if(DEBUG) System.out.println("Going to play ding sound from "+url);
 		        Clip clip = AudioSystem.getClip();		        
 		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(url));
 		        clip.open(inputStream);
-		        clip.start(); 
+		        clip.start();
+		        long time = clip.getMicrosecondLength();
+		        Thread.sleep(time/1000);
 		        } catch (Exception e) {
 		        	Logger log = Logger.getLogger(packageName);
 					log.log(Level.WARNING, e.getStackTrace().toString());
-		        }
-		      }
-		    }).start();
+		        }		      
 		  }
 
 	
