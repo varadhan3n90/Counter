@@ -46,6 +46,7 @@ import javax.swing.JOptionPane;
 import printing.CitizenPOSPrinting;
 
 import serialProgram.ButtonRead8051;
+import utility.ConfigurationReader;
 import display.*;
 
 
@@ -53,6 +54,8 @@ import display.*;
  * The Class Server.
  */
 public class Server extends JFrame implements Serializable, ActionListener, Runnable{
+	
+	private boolean usingEmbeddedDevices = true;
 	
 	private static final String packageName = "server";
 	
@@ -86,8 +89,6 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	/** The queue to hold tokens that have been dispensed but not attended*/
 	Queue<Token> tokensDispensed;
 	
-	private int finalTokenNumberIssued = 0;
-	
 	public static final int CHECK_REQUEST = -1;
 	public static final int ACCEPT_REQUEST = -2;
 	public static final int NON_EMPTY_QUEUE = -3;
@@ -97,7 +98,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	public static final int TEST_REPLY = -7;
 	public static final int NEW_REQUEST = -8;
 	
-	private static final int TEST_QUEUE_LIMIT = 10;
+	private static int TEST_QUEUE_LIMIT = 0;
 	
 	/**
 	 * Gets the next in queue.
@@ -138,11 +139,17 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		displayScreen.addActionListener(this);
 		queue = new LinkedList<DisplayValues>();
 		tokensDispensed = new LinkedList<Token>();
+		usingEmbeddedDevices = ConfigurationReader.getServerInit("usingEmbeddedDevice").equalsIgnoreCase("false")? false: true;
+		try{
+			TEST_QUEUE_LIMIT = Integer.parseInt(ConfigurationReader.getServerInit("TestQueueLimit"));
+		}catch(Exception e){
+			TEST_QUEUE_LIMIT = 10;
+		}
 	}
 	
 	
 	private void createTestQueue(){
-		if(TESTING){
+		if(TESTING && tokensDispensed.isEmpty()){
 			for(int i=0;i<TEST_QUEUE_LIMIT;i++){
 				// If tokens are of type integer then -----> tokensDispensed.add(i+1);				
 				Token t = new Token(i+1);
@@ -318,48 +325,60 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			Display	display = new Display();
 			display.setVisible(true);
 			// TODO: Serial communication function my be called here
-			SerialCommunication embeddedDevice = new SerialCommunication(tokensDispensed, "COM1");
-			embeddedDevice.start();
+			if(usingEmbeddedDevices){
+				String defaultComPort = "COM1";
+				if(!ConfigurationReader.getServerInit("COMPort").isEmpty())
+					defaultComPort = ConfigurationReader.getServerInit("COMPort");
+				SerialCommunication embeddedDevice = SerialCommunication.getInstance(tokensDispensed, defaultComPort);
+				embeddedDevice.start();
+			}
 		}
+	}
+}
+
+class SerialCommunication extends Thread {
+	Queue<Token> queue;
+	String port;
+	private int finalTokenNumberIssued = 0;
+	static SerialCommunication s = new SerialCommunication();
+	
+	private SerialCommunication(){
+		// Singleton object
+	}
+	
+	public static SerialCommunication getInstance(Queue<Token> tokenQueue,String port){
+		s.queue = tokenQueue;
+		s.port = port;
+		return s;
+	}
+	
+	private String createTokenID(String value){
+		// TODO: add logic to make the token and add it to queue based on
+		// Temporary logic has been added for testing purpose.
+		finalTokenNumberIssued ++;
+		Token t = new Token(finalTokenNumberIssued);
+		s.queue.add(t);
+		return t.getTokenValue()+"";
 	}
 	
 	
-	class SerialCommunication extends Thread {
-		Queue<Token> queue;
-		String port;
+	public void run(){
+		ButtonRead8051 tokenDispenser = new ButtonRead8051(port);
+		String requestTokenNumber = "Token Dispenser Not working";
 		
-		public SerialCommunication(Queue<Token> tokenQueue,String port){
-			queue = tokenQueue;
-			this.port = port;
-		}
-		
-		private String createTokenID(String value){
-			// TODO: add logic to make the token and add it to queue based on
-			// Temporary logic has been added for testing purpose.
-			finalTokenNumberIssued ++;
-			Token t = new Token(finalTokenNumberIssued);
-			tokensDispensed.add(t);
-			return t.getTokenValue()+"";
-		}
-		
-		
-		public void run(){
-			ButtonRead8051 tokenDispenser = new ButtonRead8051(port);
-			String requestTokenNumber = "Token Dispenser Not working";
-			try {
-				String value = tokenDispenser.readPort();
-				requestTokenNumber = createTokenID(value);
-				// TODO: Add logic for different queues on different values.
-				
-			} catch (NoSuchPortException | PortInUseException
-					| UnsupportedCommOperationException | IOException e) {				
-				// TODO: Log values
-			}
+		try {
+			String value = tokenDispenser.readPort();
+			requestTokenNumber = createTokenID(value);
+			// TODO: Add logic for different queues on different values.
 			CitizenPOSPrinting print = CitizenPOSPrinting.getInstance();
 			print.printToken(requestTokenNumber);
 			
+		} catch (NoSuchPortException | PortInUseException
+				| UnsupportedCommOperationException | IOException e) {				
+			// TODO: Log values
+			e.printStackTrace();
 		}
+		
+		
 	}
-	
-	
 }
