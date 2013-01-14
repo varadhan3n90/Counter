@@ -23,7 +23,9 @@ import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 import server.Server;
 import utility.ConfigurationReader;
@@ -42,6 +44,8 @@ public class Display extends JFrame implements Serializable, Runnable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12346L;
 	
+	private static String LANGUAGE;
+	
 	/** The display table. */
 	JTable displayTable;
 	
@@ -52,9 +56,9 @@ public class Display extends JFrame implements Serializable, Runnable {
 	JScrollPane jp;
 	
 	/** The column names. */
-	String column1 = ConfigurationReader.getServerInit("header1");
-	String column2 = ConfigurationReader.getServerInit("header2");
-	String columnNames[] = {column1,column2};
+	String column1;
+	String column2;
+	String columnNames[];
 	
 	/** The data. */
 	String[][] data= {{" "," "},{" "," "},{" "," "}};
@@ -80,7 +84,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 		File f[] = folder.listFiles(ff);
 		for(int i=0;i<f.length;i++){
 			ads.add(f[i]);
-		}
+		}		
 	}
 	
 	/**
@@ -88,13 +92,38 @@ public class Display extends JFrame implements Serializable, Runnable {
 	 */
 	private void initialize() {
 		initializeAds();
+		LANGUAGE = ConfigurationReader.getServerInit("language");
+		column1 = ConfigurationReader.getServerInit(LANGUAGE+"."+"header1");
+		column2 = ConfigurationReader.getServerInit(LANGUAGE+"."+"header2");
+		final int alignment = Integer.parseInt(ConfigurationReader.getServerInit("align_text"));
+		columnNames = new String[2];
+		columnNames[0] = column1;
+		columnNames[1] = column2;
 		if(DEBUG) System.out.println("Creating display tables.");		
-		Font font = new Font("Times New Roman", Font.BOLD, 140);		
-		displayTable = new JTable(data, columnNames);
+		Font font = new Font("Times New Roman", Font.BOLD, 140);
+		String fontName = ConfigurationReader.getServerInit(LANGUAGE+".font");
+		Font headerFont = new Font(fontName,Font.BOLD,140);
+		displayTable = new JTable(data, columnNames){
+			 /**
+			 * 
+			 */
+			private static final long serialVersionUID = -6275828994207912191L;
+			DefaultTableCellRenderer renderRight=new DefaultTableCellRenderer();
+
+	          {//initializer block
+	              renderRight.setHorizontalAlignment(alignment);
+	          }
+
+	        @Override
+	        public TableCellRenderer getCellRenderer(int arg0, int arg1) {
+	               return renderRight;
+	        }
+		};
 		displayTable.setFont(font);
 		displayTable.setRowHeight(200);
+		
 		tableHeader = displayTable.getTableHeader();
-		tableHeader.setFont(font);
+		tableHeader.setFont(headerFont);
 		jp = new JScrollPane(displayTable);		
 		getContentPane().add(jp);
 	}
@@ -122,9 +151,8 @@ public class Display extends JFrame implements Serializable, Runnable {
 		String numberString = number + "";		
 		for(int i=0;i<numberString.length();i++){
 			int val = numberString.charAt(i) - '0';
-			String playFile = "Resources/sounds/"+val+".wav";
-			System.out.println("playing"+playFile);
-			playSound("Resources/sounds/Token_no.wav");
+			String playFile = "Resources/sounds/"+LANGUAGE+"/"+val+".wav";
+			System.out.println("playing"+playFile);			
 			playSound(playFile);			
 		}
 	}
@@ -145,9 +173,11 @@ public class Display extends JFrame implements Serializable, Runnable {
 		data[0][0] = ""+d.tokenNumber;
 		contentDisplayed = true;
 		displayTable.updateUI();
-		//playSound(dingSound);
-		//playSound("Resources/sounds/Token_no.wav");
+		playSound("Resources/sounds/"+LANGUAGE+"/Token_no.wav");
 		tellNumber(d.tokenNumber);
+		// TODO: Create a wav file for Counter no
+		// playSound("Resources/sounds/"+LANGUAGE+"/Counter_no.wav");
+		// tellNumber(d.counterNumber);
 	}
 	
 	public void paint(Graphics g){
