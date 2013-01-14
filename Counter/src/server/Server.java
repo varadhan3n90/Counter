@@ -41,7 +41,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import printing.CitizenPOSPrinting;
 
@@ -69,7 +68,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	private static final String settingsFile = "Resources/ServerSetting.obj";
 	
 	/** The Constant PORT. */
-	private static final int PORT = 8100;
+	private static int PORT = 8100;
 		
 	/** The my server. */
 	public static Server myServer;
@@ -145,11 +144,16 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 		}catch(Exception e){
 			TEST_QUEUE_LIMIT = 10;
 		}
+		try{
+			PORT = Integer.parseInt(ConfigurationReader.getServerInit("server_port"));
+		}catch(Exception e){
+			PORT = 8100;
+		}
 	}
 	
 	
 	private void createTestQueue(){
-		if(TESTING && tokensDispensed.isEmpty()){
+		if(TESTING){
 			for(int i=0;i<TEST_QUEUE_LIMIT;i++){
 				// If tokens are of type integer then -----> tokensDispensed.add(i+1);				
 				Token t = new Token(i+1);
@@ -164,7 +168,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	 *
 	 * @return the next token number
 	 */
-	public Token getNextToken(){
+	public Token getNextToken() throws NoTokensDispensedException{
 		/*
 		if(TESTING){
 			return new Random().nextInt(100);
@@ -178,7 +182,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 			// TODO: return the token number to be dispensed			
 		return tokenNumber;
 		*/
-		
+		if(tokensDispensed.isEmpty())
+			throw new NoTokensDispensedException();
 		return tokensDispensed.remove();
 	}
 		
@@ -213,7 +218,11 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 					if(DEBUG) System.out.println("New request received.");
 					out.writeInt(OK_MESSAGE);
 					counterNumber = in.readInt();
-					nextToken = getNextToken().getTokenValue();
+					try{
+						nextToken = getNextToken().getTokenValue();
+					}catch(NoTokensDispensedException ntde){
+						nextToken = EMPTY_QUEUE;
+					}
 					// Problem is token number is assumed to be integer
 					// TODO: In case token number is made to contain string also then send either 2 integers or send a string instead of token number
 					out.writeInt(nextToken);
@@ -315,13 +324,18 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getActionCommand().equals("Settings")){
-			JOptionPane.showMessageDialog(null, "Setting button pressed");
+			//JOptionPane.showMessageDialog(null, "Setting button pressed");
+			this.setVisible(false);
+			Settings adjustSettings = new Settings();
+			adjustSettings.setVisible(true);
 		}
 		if(ae.getActionCommand().equals("Display Counter")){
 			if(DEBUG) System.out.println("Display counter button pressed");			
 			Thread t = new Thread(this);
 			t.start();
 			this.setVisible(false);
+			DHCP d = DHCP.getInstance();
+			d.start();
 			Display	display = new Display();
 			display.setVisible(true);
 			// TODO: Serial communication function my be called here
@@ -330,7 +344,8 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 				if(!ConfigurationReader.getServerInit("COMPort").isEmpty())
 					defaultComPort = ConfigurationReader.getServerInit("COMPort");
 				SerialCommunication embeddedDevice = SerialCommunication.getInstance(tokensDispensed, defaultComPort);
-				embeddedDevice.start();
+				// if(embeddedDevice.getThreadGroup().activeCount()==0)
+					embeddedDevice.start();
 			}
 		}
 	}
@@ -341,6 +356,7 @@ class SerialCommunication extends Thread {
 	String port;
 	private int finalTokenNumberIssued = 0;
 	static SerialCommunication s = new SerialCommunication();
+	private boolean started = false;
 	
 	private SerialCommunication(){
 		// Singleton object
@@ -363,22 +379,23 @@ class SerialCommunication extends Thread {
 	
 	
 	public void run(){
-		ButtonRead8051 tokenDispenser = new ButtonRead8051(port);
-		String requestTokenNumber = "Token Dispenser Not working";
-		
-		try {
-			String value = tokenDispenser.readPort();
-			requestTokenNumber = createTokenID(value);
-			// TODO: Add logic for different queues on different values.
-			CitizenPOSPrinting print = CitizenPOSPrinting.getInstance();
-			print.printToken(requestTokenNumber);
+		if(!started){
+			started = true;
+			ButtonRead8051 tokenDispenser = new ButtonRead8051(port);
+			String requestTokenNumber = "Token Dispenser Not working";
 			
-		} catch (NoSuchPortException | PortInUseException
-				| UnsupportedCommOperationException | IOException e) {				
-			// TODO: Log values
-			e.printStackTrace();
+			try {
+				String value = tokenDispenser.readPort();
+				requestTokenNumber = createTokenID(value);
+				// TODO: Add logic for different queues on different values.
+				CitizenPOSPrinting print = CitizenPOSPrinting.getInstance();
+				print.printToken(requestTokenNumber);
+				
+			} catch (NoSuchPortException | PortInUseException
+					| UnsupportedCommOperationException | IOException e) {				
+				// TODO: Log values
+				e.printStackTrace();
+			}
 		}
-		
-		
 	}
 }
