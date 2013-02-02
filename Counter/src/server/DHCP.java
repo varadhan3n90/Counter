@@ -19,7 +19,7 @@ public class DHCP extends Thread{
     }
     
     public void run(){
-    	// if(this.getThreadGroup().activeCount()==1){
+    	
     		System.out.println("Running DHCP server. ");
 	    	try{
 	            System.out.println("DHCP Server offer starting.");
@@ -38,7 +38,7 @@ public class DHCP extends Thread{
 	                }                
 	            }
 	        }catch(Exception e) { System.out.println("Error trying to send DHCP OFFER or DHCP RESPONSE"+e.getMessage()); }
-    	// }
+    	
     }
     
 }

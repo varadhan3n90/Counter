@@ -10,22 +10,22 @@ public class DHCPDiscover {
         while(retry<3){
         try{    
         	int PORT = 8068;
-                DatagramSocket serverSocket = new DatagramSocket();
-                serverSocket.setSoTimeout(6000);
-                serverSocket.setBroadcast(true);
-                InetAddress group = InetAddress.getByName("255.255.255.255");
-                System.out.println("Trying to find DHCP Servers");
-                byte[] b = "DHCPDISCOVER".getBytes();
-                DatagramPacket dpkt = new DatagramPacket(b, b.length, group, PORT);
-                serverSocket.send(dpkt);
-                byte[] buf = new byte[256];
-                DatagramPacket packet = new DatagramPacket(buf, buf.length);
-                serverSocket.receive(packet);
-                System.out.println(new String(packet.getData()).trim()+" obtained from DHCP Server "+packet.getAddress().getHostAddress());
-                String dhcpServerAddress = packet.getAddress().getHostAddress();
-                serverSocket.close();
-                System.out.println("Server ip: "+dhcpServerAddress);
-                return dhcpServerAddress;          
+            DatagramSocket serverSocket = new DatagramSocket();
+            serverSocket.setSoTimeout(6000);
+            serverSocket.setBroadcast(true);
+            InetAddress group = InetAddress.getByName("255.255.255.255");
+            System.out.println("Trying to find DHCP Servers");
+            byte[] b = "DHCPDISCOVER".getBytes();
+            DatagramPacket dpkt = new DatagramPacket(b, b.length, group, PORT);
+            serverSocket.send(dpkt);
+            byte[] buf = new byte[256];
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            serverSocket.receive(packet);
+            System.out.println(new String(packet.getData()).trim()+" obtained from DHCP Server "+packet.getAddress().getHostAddress());
+            String dhcpServerAddress = packet.getAddress().getHostAddress();
+            serverSocket.close();
+            System.out.println("Server ip: "+dhcpServerAddress);
+            return dhcpServerAddress;          
 
         }catch(Exception e) { 
         	retry++;
