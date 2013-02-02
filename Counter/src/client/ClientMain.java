@@ -38,15 +38,17 @@ public class ClientMain {
 				FileInputStream fis = new FileInputStream(f);
 				ObjectInputStream in = new ObjectInputStream(fis);
 				Client.myClient = (Client)in.readObject();
-				Client.myClient.setVisible(true);
+				//Client.myClient.setVisible(true);
 				if(DEBUG) System.out.println("Client initiated from existing settings.");
 			}else{
 				if(DEBUG) System.out.println("New client created..");
 				f.createNewFile();
 				Client.myClient = new Client();
-				Client.myClient.setVisible(true);
+				
 			}
-			
+			Client.myClient.setVisible(true);
+			Thread notificationThread = new Thread(Client.myClient);
+			notificationThread.start();
 			WindowListener listener = new WindowAdapter() {
 				@Override
 				public void windowClosing(WindowEvent e){
