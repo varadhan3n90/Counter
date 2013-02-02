@@ -23,7 +23,7 @@ import utility.ConfigurationReader;
 /**
  * The Class Client.
  */
-public class Client extends JFrame implements ActionListener {
+public class Client extends JFrame implements ActionListener,Runnable {
 
 	// private final static String packageName = "client";
 
@@ -152,6 +152,12 @@ public class Client extends JFrame implements ActionListener {
 		if(connected==false){
 			JOptionPane.showMessageDialog(null, "Unable to reach server", "QMS Client Error", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+
+	@Override
+	public void run() {
+		new ReceiveBroadCast();		
 	}
 
 }
