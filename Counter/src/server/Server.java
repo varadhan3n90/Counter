@@ -154,6 +154,7 @@ public class Server extends JFrame implements Serializable, ActionListener, Runn
 	
 	private void createTestQueue(){
 		if(TESTING){
+			new BroadcastToClient("New clients in queue");
 			for(int i=0;i<TEST_QUEUE_LIMIT;i++){
 				// If tokens are of type integer then -----> tokensDispensed.add(i+1);				
 				Token t = new Token(i+1);
@@ -374,6 +375,9 @@ class SerialCommunication extends Thread {
 		finalTokenNumberIssued ++;
 		Token t = new Token(finalTokenNumberIssued);
 		s.queue.add(t);
+		if(s.queue.isEmpty()){
+			new BroadcastToClient("New clients in queue");			
+		}
 		return t.getTokenValue()+"";
 	}
 	
