@@ -3,6 +3,8 @@
  */
 package display;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -21,8 +23,11 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -45,6 +50,8 @@ public class Display extends JFrame implements Serializable, Runnable {
 	private static final long serialVersionUID = 12346L;
 	
 	private static String LANGUAGE;
+	
+	public static Color color;
 	
 	/** The display table. */
 	JTable displayTable;
@@ -96,32 +103,33 @@ public class Display extends JFrame implements Serializable, Runnable {
 		column1 = ConfigurationReader.getServerInit(LANGUAGE+"."+"header1");
 		column2 = ConfigurationReader.getServerInit(LANGUAGE+"."+"header2");
 		final int alignment = Integer.parseInt(ConfigurationReader.getServerInit("align_text"));
+		final int headerFontSize = Integer.parseInt(ConfigurationReader.getServerInit("header_font_size"));
+		final int contentFontSize = Integer.parseInt(ConfigurationReader.getServerInit("content_font_size"));
 		columnNames = new String[2];
 		columnNames[0] = column1;
 		columnNames[1] = column2;
 		if(DEBUG) System.out.println("Creating display tables.");		
-		Font font = new Font("Times New Roman", Font.BOLD, 140);
+		Font font = new Font("Times New Roman", Font.BOLD, contentFontSize);
 		String fontName = ConfigurationReader.getServerInit(LANGUAGE+".font");
-		Font headerFont = new Font(fontName,Font.BOLD,140);
-		displayTable = new JTable(data, columnNames){
-			 /**
-			 * 
-			 */
+		Font headerFont = new Font(fontName,Font.BOLD,headerFontSize);
+		displayTable = new JTable(data, columnNames){			 
 			private static final long serialVersionUID = -6275828994207912191L;
-			DefaultTableCellRenderer renderRight=new DefaultTableCellRenderer();
-
-	          {//initializer block
+			DefaultTableCellRenderer renderRight= new MyCellRenderer();//new DefaultTableCellRenderer();
+	          {
+	        	  //initializer block
 	              renderRight.setHorizontalAlignment(alignment);
 	          }
-
+	          
+	        
 	        @Override
 	        public TableCellRenderer getCellRenderer(int arg0, int arg1) {
 	               return renderRight;
 	        }
+	        
 		};
 		displayTable.setFont(font);
 		displayTable.setRowHeight(200);
-		
+				
 		tableHeader = displayTable.getTableHeader();
 		tableHeader.setFont(headerFont);
 		jp = new JScrollPane(displayTable);		
@@ -173,11 +181,12 @@ public class Display extends JFrame implements Serializable, Runnable {
 		data[0][0] = ""+d.tokenNumber;
 		contentDisplayed = true;
 		displayTable.updateUI();
+		flashCell();
 		playSound("Resources/sounds/"+LANGUAGE+"/Token_no.wav");
 		tellNumber(d.tokenNumber);
 		// TODO: Create a wav file for Counter no
-		// playSound("Resources/sounds/"+LANGUAGE+"/Counter_no.wav");
-		// tellNumber(d.counterNumber);
+		playSound("Resources/sounds/"+LANGUAGE+"/Counter_no.wav");
+		tellNumber(d.counterNumber);
 	}
 	
 	public void paint(Graphics g){
@@ -194,7 +203,7 @@ public class Display extends JFrame implements Serializable, Runnable {
 			Logger log = Logger.getLogger(packageName);
 			log.log(Level.WARNING, e.getStackTrace().toString());
 		}
-		
+		g.clearRect(0,0,this.getWidth(), this.getHeight());
 		g.drawImage(image, // draw it  
                 this.getWidth()/2 - image.getWidth(this) / 2, // at the center  
                 this.getHeight()/2 - image.getHeight(this) / 2, // of screen 
@@ -269,7 +278,12 @@ public class Display extends JFrame implements Serializable, Runnable {
 			}
 		}
 		if(Thread.currentThread().getName().equals("AdDisplay"))
-		while(true){
+		while(true){			
+			try {
+				Thread.sleep(15000);
+			} catch (InterruptedException e1) {				
+				e1.printStackTrace();
+			}
 			if(isContentDisplayed()){
 				try {					
 					setContentDisplayed(false);
@@ -290,6 +304,70 @@ public class Display extends JFrame implements Serializable, Runnable {
 					log.log(Level.WARNING, e.getStackTrace().toString());
 				}
 			}
+		}
+	}
+	
+	
+	//----------------------------------------->Row flashing<-------------------------------------
+	private void flashCell(){
+		Thread thread = new Thread()
+		{
+		    //@Override
+		    public void run()
+		    {
+		    	int i=0;
+		        while (i<4)
+		        {
+		        	i++;
+		            
+		
+		            System.out.println("FlashCellTable.run");
+		
+		            SwingUtilities.invokeLater(new Runnable()
+		            {
+		                public void run()
+		                {
+		                    displayTable.tableChanged(new TableModelEvent(displayTable.getModel(), 0, 0, 0));
+		                    displayTable.tableChanged(new TableModelEvent(displayTable.getModel(), 0, 0, 1));
+		                }
+		            });
+		            try
+		            {
+		                Thread.sleep(1000);
+		            }
+		            catch(InterruptedException e)
+		            {
+		                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+		            }
+		        }
+		    }
+		};
+		
+thread.start();
+	}
+	
+	class MyCellRenderer extends DefaultTableCellRenderer{
+
+		/**
+		 * 
+		 */
+		final long startTime = System.currentTimeMillis();
+		private static final long serialVersionUID = 1L;
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+                int row, int column)
+		{
+			JLabel label =
+			(JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);            
+			if(row==0){
+				long now = System.currentTimeMillis();
+				long second = (now - startTime) / 1000;
+				color = second / 2 * 2 == second ? Color.white : Color.blue;
+				label.setBackground(color);
+			}
+			else{
+				label.setBackground(Color.white);
+			}
+			return label;
 		}
 	}
 	
