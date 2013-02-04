@@ -7,7 +7,7 @@ import java.net.InetAddress;
 public class DHCP extends Thread{
     private static int  PORT = 8068;
     private static DHCP d;
-    
+    private boolean threadRunning = false;
     private DHCP(){
     	// Singleton set
     }
@@ -19,7 +19,10 @@ public class DHCP extends Thread{
     }
     
     public void run(){
-    	
+    	if(threadRunning)
+    		return;
+    	else
+    		threadRunning = true;
     		System.out.println("Running DHCP server. ");
 	    	try{
 	            System.out.println("DHCP Server offer starting.");
@@ -37,7 +40,7 @@ public class DHCP extends Thread{
 	                    System.out.println("Sent DHCP Offer.");
 	                }                
 	            }
-	        }catch(Exception e) { System.out.println("Error trying to send DHCP OFFER or DHCP RESPONSE"+e.getMessage()); }
+	        }catch(Exception e) { System.out.println("Error trying to send DHCP OFFER or DHCP RESPONSE "+e.getMessage()); }
     	
     }
     
