@@ -12,7 +12,7 @@ public class BroadcastToClient {
             serverSocket.setSoTimeout(6000);
             serverSocket.setBroadcast(true);
             InetAddress group = InetAddress.getByName("255.255.255.255");
-            System.out.println("Trying to find DHCP Servers");
+            //System.out.println("Trying to find DHCP Servers");
             byte[] b = value.getBytes();
             DatagramPacket dpkt = new DatagramPacket(b, b.length, group, PORT);
             serverSocket.send(dpkt);
